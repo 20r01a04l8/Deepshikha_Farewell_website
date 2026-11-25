@@ -1,0 +1,13 @@
+# OS junk
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editor settings
+.vscode/
+
+# Large media you may not want in git (remove this line to keep music in the repo)
+assets/audio/*.mp3
+
+# Packaged builds
+*.zip

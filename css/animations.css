@@ -1,0 +1,137 @@
+/* ============================================================
+   ANIMATIONS.CSS — keyframes, reveals and motion effects
+   ============================================================ */
+
+/* ---------- Animated gradient background shimmer ---------- */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.welcome-heading,
+.celebration-name,
+.finale-thankyou,
+.btn-glow {
+  animation: gradientShift 6s ease-in-out infinite;
+}
+
+/* ---------- Pulsing glow for the welcome button ---------- */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 24px rgba(232, 194, 104, 0.35); }
+  50%      { box-shadow: 0 0 46px rgba(232, 194, 104, 0.65); }
+}
+
+#welcome-btn { animation: gradientShift 6s ease-in-out infinite, pulseGlow 2.6s ease-in-out infinite; }
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger helper classes (set via JS inline delay too) */
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+
+/* ---------- Floating idle animation for the gift box ---------- */
+@keyframes floatBob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+.giftbox:not(.open) { animation: floatBob 3s ease-in-out infinite; }
+
+/* ---------- Gift box shake before opening ---------- */
+@keyframes giftShake {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-6deg); }
+  40% { transform: rotate(6deg); }
+  60% { transform: rotate(-4deg); }
+  80% { transform: rotate(4deg); }
+}
+
+.giftbox.shaking { animation: giftShake 0.5s ease-in-out 2; }
+
+/* ---------- Animated border for glass cards ---------- */
+@keyframes borderGlow {
+  0%, 100% { border-color: var(--glass-border); }
+  50%      { border-color: var(--gold-dim); }
+}
+
+.message-form.glass { animation: borderGlow 4s ease-in-out infinite; }
+
+/* ---------- Message card pop-in ---------- */
+@keyframes popIn {
+  0%   { opacity: 0; transform: translateY(20px) scale(0.92); }
+  70%  { transform: translateY(-4px) scale(1.02); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.message-card.pop { animation: popIn 0.6s cubic-bezier(0.34, 1.3, 0.64, 1) both; }
+
+/* ---------- Appreciation tile selection pulse ---------- */
+@keyframes tilePulse {
+  0%   { box-shadow: 0 0 0 rgba(232, 194, 104, 0); }
+  50%  { box-shadow: 0 0 36px rgba(232, 194, 104, 0.6); }
+  100% { box-shadow: 0 0 28px rgba(232, 194, 104, 0.45); }
+}
+
+.appreciation-tile.selected { animation: tilePulse 0.8s ease-out; }
+
+/* ---------- Appreciation message swap ---------- */
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.appreciation-display p.swap { animation: fadeSlideIn 0.55s ease both; }
+
+/* ---------- Sparkle twinkle on headings ---------- */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50%      { opacity: 1; transform: scale(1.15); }
+}
+
+.sparkle {
+  display: inline-block;
+  animation: twinkle 1.8s ease-in-out infinite;
+}
+
+/* ---------- Scroll-down hint ---------- */
+@keyframes bounceHint {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50%      { transform: translateY(8px); opacity: 1; }
+}
+
+.scroll-hint {
+  margin-top: 60px;
+  color: var(--text-muted);
+  font-size: 1.4rem;
+  animation: bounceHint 2s ease-in-out infinite;
+}
+
+/* ============================================================
+   REDUCED MOTION — respect the user's accessibility settings
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.15s !important;
+  }
+
+  .reveal { opacity: 1; transform: none; }
+  .memory-card-inner { transition-duration: 0.2s !important; }
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="An interactive farewell celebration website." />
+  <title>A Farewell Celebration</title>
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <!-- Canvas layers: ambient particles (behind) and effects (in front) -->
+  <canvas id="particle-canvas" class="canvas-layer" aria-hidden="true"></canvas>
+  <canvas id="fx-canvas" class="canvas-layer" aria-hidden="true"></canvas>
+
+  <!-- Scroll progress indicator -->
+  <div id="progress-bar" role="progressbar" aria-label="Page scroll progress"></div>
+
+  <!-- ============ Section 1: Welcome Screen ============ -->
+  <div id="welcome-screen">
+    <h1 id="welcome-heading" class="welcome-heading"></h1>
+    <p id="welcome-subheading" class="welcome-subheading"></p>
+    <button id="welcome-btn" class="btn-glow" type="button"></button>
+  </div>
+
+  <!-- ============ Top navigation ============ -->
+  <nav id="top-nav" aria-label="Section navigation">
+    <span id="nav-brand" class="nav-brand"></span>
+
+    <button id="nav-toggle" class="icon-btn" type="button"
+            aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+
+    <ul id="nav-links" class="nav-links"></ul>
+
+    <div class="nav-controls">
+      <button id="music-toggle" class="icon-btn" type="button"
+              aria-label="Play background music" aria-pressed="false">🎵</button>
+      <button id="mute-toggle" class="icon-btn" type="button"
+              aria-label="Mute music" aria-pressed="false">🔊</button>
+      <button id="sfx-toggle" class="icon-btn" type="button"
+              aria-label="Turn sound effects off" aria-pressed="true">🔔</button>
+      <button id="fullscreen-toggle" class="icon-btn" type="button"
+              aria-label="Enter full screen">⛶</button>
+    </div>
+  </nav>
+
+  <main id="experience">
+    <!-- ============ Section 2: A Special Celebration ============ -->
+    <section id="celebration" class="section">
+      <p id="celebration-eyebrow" class="celebration-eyebrow reveal"></p>
+      <h2 id="celebration-name" class="celebration-name reveal reveal-delay-1"></h2>
+      <div class="divider reveal reveal-delay-2"></div>
+      <p id="celebration-tagline" class="celebration-tagline reveal reveal-delay-2"></p>
+      <div class="scroll-hint reveal reveal-delay-3" aria-hidden="true">⌄</div>
+    </section>
+
+    <!-- ============ Section 3: The Memory Wall ============ -->
+    <section id="memories" class="section">
+      <h2 id="memories-title" class="section-title reveal"></h2>
+      <p id="memories-subtitle" class="section-subtitle reveal reveal-delay-1"></p>
+      <div id="memory-grid" class="memory-grid"></div>
+    </section>
+
+    <!-- ============ Section 4: Messages from the Team ============ -->
+    <section id="messages" class="section">
+      <h2 id="messages-title" class="section-title reveal"></h2>
+      <p id="messages-subtitle" class="section-subtitle reveal reveal-delay-1"></p>
+
+      <div id="message-board" class="message-board" aria-live="polite"></div>
+
+      <div class="messages-actions">
+        <button id="reveal-btn" class="btn-ghost" type="button"></button>
+      </div>
+      <p id="all-revealed-note" class="all-revealed-note" aria-live="polite"></p>
+
+      <form id="message-form" class="message-form glass" novalidate>
+        <h3 id="form-title"></h3>
+        <label for="msg-name">Name</label>
+        <input id="msg-name" type="text" maxlength="60" autocomplete="off" />
+        <label for="msg-text">Message</label>
+        <textarea id="msg-text" maxlength="280" required></textarea>
+        <div class="form-footer">
+          <span id="form-feedback" class="form-feedback" aria-live="polite"></span>
+          <button id="msg-submit" class="btn-ghost" type="submit"></button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ============ Section 5: Interactive Appreciation Wall ============ -->
+    <section id="appreciation" class="section">
+      <h2 id="appreciation-title" class="section-title reveal"></h2>
+      <p id="appreciation-subtitle" class="section-subtitle reveal reveal-delay-1"></p>
+      <div id="appreciation-grid" class="appreciation-grid"></div>
+      <div id="appreciation-display" class="appreciation-display glass" aria-live="polite"></div>
+    </section>
+
+    <!-- ============ Section 6: The Surprise Box ============ -->
+    <section id="surprise" class="section">
+      <h2 id="surprise-title" class="section-title reveal"></h2>
+
+      <div class="giftbox-stage reveal reveal-delay-1">
+        <div id="giftbox" class="giftbox" aria-hidden="true">
+          <div class="giftbox-lid"></div>
+          <div class="giftbox-bow">🎀</div>
+          <div class="giftbox-body"></div>
+        </div>
+      </div>
+
+      <button id="surprise-btn" class="btn-glow reveal reveal-delay-2" type="button"></button>
+
+      <div id="surprise-reveal" class="surprise-reveal">
+        <p id="surprise-message" class="surprise-message"></p>
+        <p id="surprise-closing" class="surprise-closing"></p>
+        <div id="photo-gallery-wrap" class="photo-gallery-wrap" hidden>
+          <h3 id="photo-gallery-title" class="photo-gallery-title"></h3>
+          <p id="photo-gallery-subtitle" class="photo-gallery-subtitle"></p>
+          <div id="photo-gallery" class="photo-gallery"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Section 7: The Final Farewell ============ -->
+    <section id="finale" class="section">
+      <div id="finale-lines"></div>
+      <h2 id="finale-thankyou" class="finale-thankyou"></h2>
+      <p id="finale-legacy" class="finale-legacy"></p>
+      <button id="replay-btn" class="btn-ghost" type="button"></button>
+    </section>
+  </main>
+
+  <!-- Back to top -->
+  <button id="back-to-top" type="button" aria-label="Back to top">↑</button>
+
+  <!-- Toast notifications -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Photo viewer backdrop -->
+  <div id="photo-viewer" class="photo-viewer" role="dialog"
+       aria-modal="true" aria-labelledby="photo-viewer-title" hidden>
+    <img id="photo-viewer-image" class="photo-viewer-image"
+         src="assets/photos/photo-placeholder.svg" alt="" />
+    <div class="photo-viewer-shade" aria-hidden="true"></div>
+    <button id="photo-viewer-close" class="photo-viewer-close"
+            type="button" aria-label="Close photo">×</button>
+    <button id="photo-viewer-previous" class="photo-viewer-arrow photo-viewer-previous"
+            type="button" aria-label="Previous photo">‹</button>
+    <button id="photo-viewer-next" class="photo-viewer-arrow photo-viewer-next"
+            type="button" aria-label="Next photo">›</button>
+    <div class="photo-viewer-caption" aria-live="polite">
+      <p id="photo-viewer-count" class="photo-viewer-count"></p>
+      <h2 id="photo-viewer-title"></h2>
+      <p id="photo-viewer-message"></p>
+    </div>
+  </div>
+
+  <!-- Background music (starts only after user interaction) -->
+  <audio id="bg-music" preload="none"></audio>
+
+  <!-- Scripts: content first, then modules, then the app -->
+  <script src="js/content.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/confetti.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/messages.js"></script>
+  <script src="js/photo-gallery.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

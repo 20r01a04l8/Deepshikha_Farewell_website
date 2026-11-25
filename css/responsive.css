@@ -1,0 +1,106 @@
+/* ============================================================
+   RESPONSIVE.CSS — tablet and mobile layouts
+   ============================================================ */
+
+/* ---------- Tablet ---------- */
+@media (max-width: 900px) {
+  .memory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .appreciation-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .nav-links a { padding: 8px 9px; font-size: 0.8rem; }
+}
+
+/* ---------- Compact navigation for tablets and smaller ---------- */
+@media (max-width: 1000px) {
+  #nav-toggle {
+    display: grid;
+    margin-left: auto;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 16px 16px;
+    background: rgba(5, 6, 14, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--glass-border);
+    transform: translateY(-130%);
+    transition: transform 0.4s ease;
+  }
+
+  .nav-links.open { transform: translateY(0); }
+
+  .nav-links a {
+    padding: 13px 10px;
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+  .section { padding: calc(var(--nav-height) + 32px) 16px 60px; }
+
+  .memory-grid { grid-template-columns: 1fr; }
+  .memory-card { height: 190px; }
+
+  .appreciation-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .appreciation-tile { padding: 20px 10px; font-size: 0.9rem; }
+
+  .message-board { grid-template-columns: 1fr; }
+  .message-form { padding: 20px; }
+  .photo-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; }
+  .photo-tile { border-radius: 12px; }
+  .photo-tile-copy { inset: auto 10px 10px; }
+  .photo-tile-title { font-size: 0.92rem; }
+  .photo-viewer { padding: 80px 20px 70px; }
+  .photo-viewer-arrow { width: 42px; height: 58px; font-size: 2.4rem; }
+  .photo-viewer-previous { left: 10px; }
+  .photo-viewer-next { right: 10px; }
+  .photo-viewer-close { top: 14px; right: 14px; }
+
+  #top-nav { gap: 6px; padding: 0 10px; }
+  .nav-brand {
+    max-width: 28vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: clamp(0.72rem, 3.8vw, 0.9rem);
+    flex-shrink: 1;
+  }
+
+  #nav-toggle,
+  .nav-controls .icon-btn {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+  }
+
+  .nav-controls { gap: 2px; margin-left: 0; flex-shrink: 0; }
+
+  .btn-glow { padding: 14px 30px; font-size: 0.98rem; }
+
+  .giftbox-stage { height: 200px; }
+
+  #back-to-top { right: 14px; bottom: 14px; }
+}
+
+/* ---------- Very small screens ---------- */
+@media (max-width: 380px) {
+  .appreciation-grid { grid-template-columns: 1fr; }
+  .photo-gallery { grid-template-columns: 1fr; }
+  #top-nav { gap: 4px; padding: 0 8px; }
+  .nav-brand { max-width: 24vw; font-size: 0.76rem; }
+  #nav-toggle,
+  .nav-controls .icon-btn {
+    width: 31px;
+    height: 34px;
+    flex-basis: 31px;
+  }
+  .nav-controls { gap: 1px; }
+}

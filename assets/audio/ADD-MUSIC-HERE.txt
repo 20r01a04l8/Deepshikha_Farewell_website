@@ -1,0 +1,18 @@
+HOW TO ADD BACKGROUND MUSIC
+===========================
+
+1. Find a royalty-free celebratory instrumental (MP3 format).
+   Good free sources: pixabay.com/music, freesound.org, incompetech.com
+   (check each track's licence — never use copyrighted music).
+
+2. Rename the file to exactly:  background-music.mp3
+
+3. Place it in this folder:    assets/audio/background-music.mp3
+
+4. Refresh the website and click "Open Your Surprise".
+   The music starts automatically after that first click.
+
+If no file is present, the website simply runs silently and
+shows a small note when the music button is pressed.
+
+To use a different filename, edit the `music.file` value in js/content.js.

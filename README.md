@@ -193,20 +193,6 @@ Open `index.html` and verify each row. Press `F12` → Console to check for erro
 | 20 | Offline | Turn off Wi-Fi → refresh → everything still works |
 | 21 | Console clean | F12 → Console → no red errors |
 
----
-
-## 📦 Packaging & Sharing
-
-To share the website with the team, zip the folder with PowerShell:
-
-```powershell
-Compress-Archive -Path "path\to\farewell-website\*" -DestinationPath "$env:USERPROFILE\Desktop\farewell-website.zip" -Force
-```
-
-Send the ZIP (email, Teams, USB). The recipient just extracts it and
-double-clicks `index.html`. Nothing to install.
-
----
 
 ## 🔒 Privacy & Safety Notes
 
